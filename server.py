@@ -1,11 +1,13 @@
 import pickle
 from flask import Flask, request, jsonify
+from flask_cors import CORS  # <-- Import CORS
 
 # Load the model
 with open("newmodel.pkl", "rb") as f:
     model = pickle.load(f)
 
 app = Flask(__name__)
+CORS(app)  # <-- Enable CORS for the whole app
 
 # Define expected raw input keys
 expected_input_keys = [
